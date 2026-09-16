@@ -1,4 +1,17 @@
-﻿venv/
-.env
+﻿# .gitignore for PDF QA Agent project
+# Virtual environment directories
+venv/
+.venv/
+env/
+# Python cache files
 __pycache__/
 *.pyc
+# Environment variable files (contains secrets)
+.env
+# Streamlit local configuration (optional)
+.streamlit/
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+# OS generated files
+.DS_Store
+Thumbs.db
