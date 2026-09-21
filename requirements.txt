@@ -1,9 +1,10 @@
 streamlit==1.37.0
-pymupdf==1.24.5
-faiss-cpu==1.7.4
+PyPDF2==3.0.1
+faiss-cpu==1.15.0
 sentence-transformers==2.7.0
 langchain==0.2.10
-langgraph==0.0.5
+langgraph==1.2.11
 langchain-google-genai==0.0.5
 langchain-community==0.2.10
 python-dotenv==1.0.1
+numpy==2.0.0

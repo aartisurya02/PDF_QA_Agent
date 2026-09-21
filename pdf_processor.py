@@ -1,5 +1,4 @@
-import fitz
-import pymupdf
+import PyPDF2
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
@@ -11,25 +10,21 @@ def extract_text_from_pdf(pdf_file):
         list of dictionaries containing page text and page number.
     """
 
-    pdf_bytes = pdf_file.read()
-
-    document = fitz.open(stream=pdf_bytes, filetype="pdf")
-
+    # Read PDF using PyPDF2 - it works directly with a file-like object
+    pdf_reader = PyPDF2.PdfReader(pdf_file)
     pages = []
+    for page_number, page in enumerate(pdf_reader.pages, start=1):
 
-    for page_number, page in enumerate(document, start=1):
+        # Extract text from the page object
+        text = page.extract_text()
 
-        text = page.get_text()
+        if text and text.strip():
+            pages.append({
+                "page": page_number,
+                "text": text
+            })
 
-        if text.strip():
-            pages.append(
-                {
-                    "page": page_number,
-                    "text": text
-                }
-            )
-
-    document.close()
+    # No explicit close needed for PyPDF2 reader; it will be cleaned up with the file handle
 
     return pages
 
